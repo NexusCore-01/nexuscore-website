@@ -1,0 +1,32 @@
+/* Global Styles - Can be used to create a separate CSS file */
+:root {
+    --dark-bg: #0A0F1C;
+    --dark-card: #121827;
+    --accent-teal: #0FF0FC;
+    --accent-teal-dark: #3DD9D6;
+    --text-light: #FFFFFF;
+    --text-gray: #B0B8C4;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Common component styles can be extracted here */

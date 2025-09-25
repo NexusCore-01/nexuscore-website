@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - NexusCore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0A0F1C;
+            --dark-card: #121827;
+            --accent-teal: #0FF0FC;
+            --accent-teal-dark: #3DD9D6;
+            --text-light: #FFFFFF;
+            --text-gray: #B0B8C4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 15, 28, 0.9) 0%, rgba(18, 24, 39, 0.8) 100%);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-teal), var(--accent-teal-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            padding: 2.5rem;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(61, 217, 214, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.1), transparent);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-teal);
+            box-shadow: 0 15px 30px rgba(15, 240, 252, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-teal);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, var(--accent-teal), var(--accent-teal-dark));
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(15, 240, 252, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-teal);
+            color: var(--accent-teal);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-teal);
+            color: var(--dark-bg);
+        }
+
+        /* Coming Soon Card */
+        .coming-soon {
+            position: relative;
+            opacity: 0.8;
+        }
+
+        .coming-soon::after {
+            content: 'Coming Soon';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-teal);
+            color: var(--dark-bg);
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: var(--dark-card);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-teal);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .cta-content p {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-card);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-teal);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-teal);
+            color: var(--dark-bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-card);
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .coming-soon::after {
+                top: 15px;
+                right: -25px;
+                font-size: 0.7rem;
+                padding: 4px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">NexusCore</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive technology solutions designed to drive your business forward and achieve digital excellence.</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+                <p>Tailored solutions to meet your unique business challenges</p>
+            </div>
+            <div class="services-grid">
+                <!-- Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with cutting-edge technologies to deliver exceptional user experiences.</p>
+                    <ul class="service-features">
+                        <li>Responsive Web Design</li>
+                        <li>E-commerce Solutions</li>
+                        <li>Web Application Development</li>
+                        <li>Content Management Systems</li>
+                        <li>API Integration</li>
+                    </ul>
+                    <a href="web-development.html" class="btn">Learn More</a>
+                </div>
+
+                <!-- Software Solutions -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Software Solutions</h3>
+                    <p>Enterprise-grade software solutions designed to streamline operations and drive business growth.</p>
+                    <ul class="service-features">
+                        <li>Custom Software Development</li>
+                        <li>Enterprise Applications</li>
+                        <li>Mobile App Development</li>
+                        <li>Cloud Solutions</li>
+                        <li>Legacy System Modernization</li>
+                    </ul>
+                    <a href="software-solutions.html" class="btn">Learn More</a>
+                </div>
+
+                <!-- IT Consulting -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>IT Consulting</h3>
+                    <p>Strategic technology guidance to help you make informed decisions and maximize your IT investments.</p>
+                    <ul class="service-features">
+                        <li>Technology Strategy</li>
+                        <li>Digital Transformation</li>
+                        <li>IT Infrastructure Planning</li>
+                        <li>Security Audits</li>
+                        <li>Vendor Selection</li>
+                    </ul>
+                    <a href="it-consulting.html" class="btn">Learn More</a>
+                </div>
+
+                <!-- UI/UX Design -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design solutions that create intuitive, engaging, and beautiful digital experiences.</p>
+                    <ul class="service-features">
+                        <li>User Research & Testing</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Visual Design</li>
+                        <li>Design Systems</li>
+                        <li>Usability Optimization</li>
+                    </ul>
+                    <a href="ui-ux-design.html" class="btn">Learn More</a>
+                </div>
+
+                <!-- Coming Soon Service -->
+                <div class="service-card coming-soon">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Intelligent solutions powered by artificial intelligence to automate processes and gain valuable insights.</p>
+                    <ul class="service-features">
+                        <li>Predictive Analytics</li>
+                        <li>Natural Language Processing</li>
+                        <li>Computer Vision</li>
+                        <li>AI-powered Automation</li>
+                        <li>Machine Learning Models</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Notify Me</a>
+                </div>
+
+                <!-- Another Coming Soon -->
+                <div class="service-card coming-soon">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive security solutions to protect your digital assets and ensure business continuity.</p>
+                    <ul class="service-features">
+                        <li>Security Assessment</li>
+                        <li>Threat Monitoring</li>
+                        <li>Incident Response</li>
+                        <li>Compliance Management</li>
+                        <li>Security Training</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Notify Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Process</h2>
+                <p>How we deliver exceptional results for our clients</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>Discovery & Planning</h3>
+                    <p>We begin by understanding your business goals, challenges, and requirements to create a comprehensive project plan.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Design & Development</h3>
+                    <p>Our team creates innovative solutions using agile methodologies, ensuring quality at every stage.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Testing & Quality Assurance</h3>
+                    <p>Rigorous testing ensures your solution meets the highest standards of performance and reliability.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Deployment & Support</h3>
+                    <p>We handle seamless deployment and provide ongoing support to ensure long-term success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Let's discuss how our services can help you achieve your goals. Contact us today for a free consultation.</p>
+                <a href="contact.html" class="btn">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NexusCore</h3>
+                    <p>Transforming businesses through innovative technology solutions since 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="web-development.html">Web Development</a>
+                    <a href="software-solutions.html">Software Solutions</a>
+                    <a href="it-consulting.html">IT Consulting</a>
+                    <a href="ui-ux-design.html">UI/UX Design</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Innovation City</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@nexuscore.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexusCore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

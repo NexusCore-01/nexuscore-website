@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Setup Guide - NexusCore</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0F1C;
+            color: white;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #121827;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1, h2, h3 {
+            color: #0FF0FC;
+        }
+        code {
+            background: #0A0F1C;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            color: #3DD9D6;
+        }
+        .step {
+            background: #1a2235;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            border-left: 4px solid #0FF0FC;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Authentication Setup Guide</h1>
+        
+        <div class="step">
+            <h2>Step 1: Set up Auth0 Account</h2>
+            <p>1. Go to <a href="https://auth0.com" style="color: #0FF0FC;">auth0.com</a> and sign up for free</p>
+            <p>2. Create a new tenant for your application</p>
+            <p>3. Create a new Application (Single Page Application)</p>
+            <p>4. Copy your Domain and Client ID</p>
+        </div>
+
+        <div class="step">
+            <h2>Step 2: Set up Formspree for Email Notifications</h2>
+            <p>1. Go to <a href="https://formspree.io" style="color: #0FF0FC;">formspree.io</a></p>
+            <p>2. Create a free account</p>
+            <p>3. Create a new form and copy the form ID</p>
+        </div>
+
+        <div class="step">
+            <h2>Step 3: Update Configuration</h2>
+            <p>Replace in the script section:</p>
+            <code>
+const auth0Config = {
+    domain: "your-domain.auth0.com", // ← Replace with your Auth0 domain
+    clientId: "your-client-id", // ← Replace with your Auth0 client ID
+    redirectUri: window.location.origin
+};
+            </code>
+            <p>And in the sendSignupNotification function:</p>
+            <code>fetch('https://formspree.io/f/your-form-id', {</code>
+        </div>
+
+        <div class="step">
+            <h2>Step 4: Configure Auth0 Settings</h2>
+            <p>In your Auth0 dashboard:</p>
+            <p>• Add <code>http://localhost:3000</code> to Allowed Callback URLs</p>
+            <p>• Add <code>http://localhost:3000</code> to Allowed Logout URLs</p>
+            <p>• Add your production domain when you deploy</p>
+        </div>
+    </div>
+</body>
+</html>

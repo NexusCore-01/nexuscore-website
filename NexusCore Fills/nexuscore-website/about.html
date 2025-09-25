@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NexusCore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0A0F1C;
+            --dark-card: #121827;
+            --accent-teal: #0FF0FC;
+            --accent-teal-dark: #3DD9D6;
+            --text-light: #FFFFFF;
+            --text-gray: #B0B8C4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 15, 28, 0.9) 0%, rgba(18, 24, 39, 0.8) 100%);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-teal), var(--accent-teal-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Sections */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-teal);
+        }
+
+        .content-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-image {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(61, 217, 214, 0.1);
+            text-align: center;
+        }
+
+        .content-image i {
+            font-size: 4rem;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-teal);
+            box-shadow: 0 10px 25px rgba(15, 240, 252, 0.1);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: var(--text-gray);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-teal);
+        }
+
+        .team-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--dark-bg);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-teal);
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card .role {
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-card);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(61, 217, 214, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-teal);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-teal);
+            color: var(--dark-bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-card);
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">NexusCore</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Who we are and what we do - Learn about our journey, mission, and the team behind NexusCore</p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="about-section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                   <h3>Our Story</h3>
+                      <p>Founded in 2025 by me, Saad, at just 16 years old, NexusCore began as a vision to bridge the gap between innovative technology and business success. With passion and dedication, I built a small team of talented developers and technology enthusiasts to bring this vision to life.</p>
+                      <p>What started as a humble startup has grown into a full-service technology company serving clients across various industries. Our journey has been marked by continuous learning, innovation, and a relentless pursuit of excellence.</p>
+                      <p>Today, as the CEO and Founder, I am proud to have delivered over 200 successful projects and built lasting relationships with clients who trust us to drive their digital transformation.</p>
+                   </div>
+                <div class="content-image">
+                    <i class="fas fa-rocket"></i>
+                    <h3>From Startup to Industry Leader</h3>
+                    <p>3+ years of innovation and growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="about-section" style="background: var(--dark-card);">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-image">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission & Vision</h3>
+                    <p>Driving digital transformation</p>
+                </div>
+                <div class="content-text">
+                    <h3>Our Mission</h3>
+                    <p>To empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation. We believe that technology should be an enabler, not a barrier.</p>
+                    
+                    <h3 style="margin-top: 2rem;">Our Vision</h3>
+                    <p>To be the leading technology partner for businesses seeking digital transformation, known for our innovation, reliability, and exceptional client service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We constantly explore new technologies and methodologies to deliver cutting-edge solutions that give our clients a competitive advantage.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>We believe in working closely with our clients as partners, ensuring transparency and alignment throughout every project.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We're committed to delivering the highest quality work, paying attention to every detail and exceeding expectations.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We conduct business with honesty, transparency, and respect, building trust through our actions and deliverables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="about-section" style="background: var(--dark-card);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Leadership</h2>
+                <p>The passionate individuals driving our success</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <div class="role">CEO & Founder</div>
+                    <p>With over 15 years in the tech industry, Sarah leads our strategic vision and client relationships.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <div class="role">CTO</div>
+                    <p>Michael oversees our technical strategy and ensures we stay at the forefront of technology innovation.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Emily Rodriguez</h3>
+                    <div class="role">Head of Design</div>
+                    <p>Emily leads our design team, creating intuitive and beautiful user experiences for our clients.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>David Kim</h3>
+                    <div class="role">Lead Developer</div>
+                    <p>David manages our development team and ensures the technical excellence of all our projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NexusCore</h3>
+                    <p>Transforming businesses through innovative technology solutions since 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="web-development.html">Web Development</a>
+                    <a href="software-solutions.html">Software Solutions</a>
+                    <a href="it-consulting.html">IT Consulting</a>
+                    <a href="ui-ux-design.html">UI/UX Design</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Innovation City</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@nexuscore.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NexusCore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
